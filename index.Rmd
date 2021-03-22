@@ -1,7 +1,6 @@
 ---
 title: "Juthi Dewan"
 description: |
-  My R Ponderings
 site: distill::distill_website
 ---
 
@@ -14,6 +13,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ![](juthidewan.jpg)
 
 
-## About me: 
+### Hello!
+### Thanks for stopping by!
+### I’m a junior at Macalester College, studying Applied Math & Statistics, with a newly found passion for Design. I’m looking for opportunities to combine my passion for design with my love of data to create valuable experiences. 
 
-## Education: 
+### You can find me at sdewan@macalester.edu

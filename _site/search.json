@@ -5,15 +5,14 @@
       "title": "Blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-03-21T19:53:24-05:00"
+      "last_modified": "2021-03-21T20:37:02-05:00"
     },
     {
       "path": "index.html",
       "title": "Juthi Dewan",
-      "description": "My R Ponderings\n",
       "author": [],
-      "contents": "\n\nAbout me:\nEducation:\n\n\n\n",
-      "last_modified": "2021-03-21T19:53:25-05:00"
+      "contents": "\n\nHello!\nThanks for stopping by!\nI’m a junior at Macalester College, studying Applied Math & Statistics, with a newly found passion for Design. I’m looking for opportunities to combine my passion for design with my love of data to create valuable experiences.\n\nYou can find me at sdewan@macalester.edu\n\n\n\n",
+      "last_modified": "2021-03-21T20:37:04-05:00"
     }
   ],
   "collections": ["posts/posts.json"]
