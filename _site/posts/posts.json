@@ -3,17 +3,12 @@
     "path": "posts/2021-03-21-buildingdistill/",
     "title": "Building a {distill} website",
     "description": "How I built this site using {distill}",
-    "author": [
-      {
-        "name": "Juthi Dewan",
-        "url": {}
-      }
-    ],
+    "author": [],
     "date": "2021-03-21",
     "categories": [],
     "contents": "\nhello\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-12-12T12:22:05-06:00",
-    "input_file": {}
+    "last_modified": "2021-12-12T12:41:14-06:00",
+    "input_file": "buildingdistill.knit.md"
   }
 ]
