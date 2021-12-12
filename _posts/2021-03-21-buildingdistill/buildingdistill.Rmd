@@ -12,10 +12,12 @@ output:
 ---
 
 
+Here is where I talk about building the website. 
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-Here is where I talk about building the website. 
 
