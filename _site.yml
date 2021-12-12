@@ -8,9 +8,9 @@ navbar:
   right:
     - text: "About"
       href: index.html
-    - text: "Blog"
+    - text: "Portfolio"
       href: blog.html
     - icon: fa fa-linkedin
-      href: https://www.linkedin.com/in/s-juthi-dewan-19b8221a4/
+      href: https://www.linkedin.com/in/juthidewan/
 output: distill::distill_article
 theme: "juthi_theme.css"
