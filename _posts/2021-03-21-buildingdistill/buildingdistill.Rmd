@@ -3,7 +3,7 @@ title: "Building a {distill} website"
 description: |
   How I built this site using {distill}
 author:
-  - name: Juthi Dewan
+- name: Juthi Dewan
 date: 03-21-2021
 preview: blog1.png
 output:
@@ -11,9 +11,7 @@ output:
     self_contained: false
 ---
 
-
-Here is where I talk about building the website. 
-
+hello
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
