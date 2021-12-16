@@ -1,4 +1,8 @@
 ---
 title: "Portfolio"
+output:
+  distill::distill_article:
+    self_contained: false
 listing: posts
+theme: "juthi_theme.css"
 ---

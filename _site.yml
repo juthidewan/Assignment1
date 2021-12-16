@@ -12,6 +12,9 @@ navbar:
     - text: "Portfolio"
       href: content.html
       
+    - text: "Blog"
+      href: blog.html
+      
     - icon: fa fa-linkedin
       href: https://www.linkedin.com/in/juthidewan/
 output: distill::distill_article

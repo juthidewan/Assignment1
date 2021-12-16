@@ -15,7 +15,7 @@
 
 html {
   /*-- Main font sizes --*/
-  --title-size:      50px;
+  --title-size:      30px;
   --code-size:       14px;
   --body-size:       1.06;
   --aside-size:      12px;
@@ -34,23 +34,23 @@ html {
 
 /*-- ARTICLE METADATA --*/
 d-byline {
-  --heading-size:    0.6rem;
+  --heading-size:    2rem;
   --heading-color:   #c84c34;
-  --body-size:       0.8rem;
+  --body-size:       1rem;
   --body-color:      #c84c34;
 }
 
 /*-- ARTICLE TABLE OF CONTENTS --*/
 .d-contents {
   --heading-size:    18px;
-  --contents-size:   13px;
+  --contents-size:   10px;
 }
 
 /*-- ARTICLE APPENDIX --*/
 d-appendix {
   --heading-size:    15px;
   --heading-color:   rgba(0, 0, 0, 0.65);
-  --text-size:       0.8em;
+  --text-size:       1rem;
   --text-color:      #c84c34;
 }
 

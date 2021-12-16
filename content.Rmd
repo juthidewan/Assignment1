@@ -4,11 +4,10 @@ author:
 name: Juthi Dewan
 date: 03-21-2021
 preview: blog1.png
+theme: "juthi_theme.css"
 output:
   distill::distill_article:
     self_contained: false
 ---
-
-
 
 [Neighborhood Deserts: Transportation Access & Housing Disparities in NYC](content/CH5.html) 
