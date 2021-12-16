@@ -13,5 +13,128 @@ output:
 ---
 
 
+# Motivation
+In collaboration with Freddy Barragan, Sam Ding, and Vichy Meas, we designed this project for our Bayesian Statistics course taught by Dr. Alicia Johnson. We’d like to extend our thanks to Alicia for guiding us through Bayes and the capstone experience!
+
+A reproducible version of this blog post with all code can be found here.
+
+We were initially interested in characterizing New York City’s internal racial dynamics using demography, geographic mobility, community health, and economic outcomes. As this project developed, we found ourselves thinking about the relationships between transportation (in)access and housing inequity. In our project, there are two major sections: Subway Accessibility and Transportation and Structural Inequity. In Subway Accessibility we explore transportation deserts and what are the major determinants of Subway Inaccess in New York City using two Bayesian classification models. While in Transportation and Structural Inequity, we extend our discussion of transportation access to study its relationship to both rental prices and evictions using both simple and hierarchical Bayesian multivariate regression. In the extended document, we also fit non-hierarchical spatial models to control for the underlying spatial relationships between neighborhoods, but omit major discussion in this blog post as Bayesian spatial regression was beyond the scope of this course.
+
+First, however, let’s do a data introduction:
+# Data Introduction
+
+```{r}
+# Load packages
+library(tidyverse)
+library(janitor)
+library(here)
+library(rstan)
+library(rstanarm)
+library(bayesrules)
+library(tidyverse)
+library(rstanarm)
+library(broom.mixed)
+library(tidybayes)
+library(bayesplot)
+library(bayesrules)
+library(tidyverse)
+library(rstanarm)
+library(broom.mixed)
+library(tidybayes)
+library(forcats)
+library(bayesplot)
+library(sf)
+library(nycgeo)
+library(tidycensus)
+library(extrafont)
+library(extrafontdb)
+# themes
+theme_set(theme_minimal())
+juthis_theme <- c("#c84c34","#7D9B8A","#4D6F5C","#272932","#404E4D","#85C7F2")
+color_scheme_set(juthis_theme)
+```
+
+```{r, results='hide'}
+nyc_join <- merge(nta_sf,nta_acs_data)
+
+
+nyc_join <- nyc_join %>%
+  st_transform(., crs=4269)
+
+county_list <- nyc_join %>% pull(county_name) %>% unique()
+
+
+census_api_key("0cc07f06386e317f312adef5e0892b0d002b7254")
+
+census_data <- get_acs(state = "NY", 
+        county = c(county_list), 
+        geography = "tract", 
+        variables = c(gini_inequality ="B19083_001"),
+        year = 2019,
+        output = "wide",
+        survey = "acs5",
+        geometry = TRUE) %>% 
+  dplyr::select(-c(NAME, ends_with("M"))) %>%
+         rename_at(vars(ends_with("E")), .funs = list(~str_sub(., end = -2)))  %>%
+  st_transform(., 4269) %>%
+  dplyr::select(-GEOID)
+```
+
+```{r, results='hide'}
+vari_names <- read_csv(here("clean_data", "nyc_names_vichy_complied2.csv"))
+nyc_clean <- st_read(here("clean_data", "nyc_data_vichy_complied2.shp"))
+colnames(nyc_clean) <- colnames(vari_names)
+
+gini_neighborhood <- st_join(nyc_clean, census_data, left = TRUE) %>%
+  group_by(nta_id) %>%
+  summarize(gini_neighborhood=median(gini_inequality, na.rm=T)) %>%
+  as_tibble() %>%
+  dplyr::select(nta_id, gini_neighborhood) 
+
+nyc_clean <- nyc_clean %>%
+  as_tibble() %>%
+  left_join(., gini_neighborhood, by="nta_id")%>% 
+  unique() %>%
+  st_as_sf()
+
+nyc_compiled <- nyc_clean %>%
+   mutate(asian_perc = asian_count / total_pop) %>%
+   mutate(white_perc = white_count / total_pop) %>%
+   mutate(black_perc = black_count / total_pop) %>%
+   mutate(latinx_perc = latinx_count / total_pop) %>%
+   mutate(native_perc = native_count / total_pop) %>%
+   mutate(noncitizen_perc = noncitizen_count / total_pop) %>%
+   mutate(evictions_perc = eviction_count / total_pop) %>%
+   mutate(uninsured_perc = uninsured_count / total_pop) %>%
+  mutate(unemployment_perc = unemployment_count / total_pop) %>%
+  mutate(below_poverty_line_perc = below_poverty_line_count / total_pop) %>%
+  mutate(transportation_desert_3cat = 
+           factor(transportation_desert_3cat, levels=c("Poor", "Typical", "Excellent"))) %>%
+  mutate(nta_type = as.factor(nta_type)) %>%
+  dplyr::select(-borough.y) %>%
+  dplyr::rename(borough = borough.x)
+```
+
+
+```{r, fig.height=8*1.2, fig.width=8*1.2}
+nyc_compiled %>%
+  ggplot() +
+ geom_sf(aes(fill = transportation_desert_3cat),  color = "#272932") +
+  scale_fill_manual(values=c("#c84c34","#F2E8CF","#7D9B8A"),
+                       guide = guide_legend(title = "Accessibility:"), na.value="#4D6F5C") +
+  theme_minimal() +
+  ggtitle("Subway Accessibility by Neighborhood")+ 
+  theme_minimal() +
+  ggtitle("Accesibility \nby Neighborhood")+ 
+  theme(axis.text = element_blank(),
+        panel.grid.major = element_line("transparent"),
+        plot.title = element_text(family="DIN Condensed", size = 2* 28, face = "bold", hjust=.5),
+        legend.key.width = unit(.5, "in"),
+        legend.title = element_text(size = 25, face="bold", family="DIN Condensed"), 
+        legend.position = "bottom" ,
+        legend.text = element_text(size = 20, face="bold", family="DIN Condensed"))+
+  guides(fill = guide_legend(title = "Acessibility", title.position="top", title.hjust = 0.5))
+```
+
 
 
