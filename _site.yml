@@ -10,7 +10,7 @@ navbar:
       href: index.html
       
     - text: "Portfolio"
-      href: blog.html
+      href: content.html
       
     - icon: fa fa-linkedin
       href: https://www.linkedin.com/in/juthidewan/
