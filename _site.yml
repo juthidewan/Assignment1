@@ -10,9 +10,6 @@ navbar:
       href: index.html
       
     - text: "Portfolio"
-      href: content.html
-      
-    - text: "Blog"
       href: blog.html
       
     - icon: fa fa-linkedin
