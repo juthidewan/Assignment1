@@ -431,3 +431,12 @@ Importantly, we found statistically significant spatial clustering of non-citize
 ![](compare.png)
 
 As such, we could extend this work to the spatial domain using methods from the `CARBayes` or `INLA` packages. Following work by [Katie Jolly and Raven McKnight0(https://www.ravenmcknight.com/post/carbayes-tutorial/), we have outlined a spatial workflow for both the eviction and rental price models using `CARBayes` in the appendix of the extended document. However, because spatial models were beyond the scope of this project and class, we’d like to emphasize that in a more detailed analysis the models we outline in the appendix would likely be adjusted to use different data distributions, spatial effect priors (e.g., BYM, Intrinsic CAR, etcetera), and different predictors' coefficient priors. Further, in a more detailed analysis, we would explicitly describe the mathematical construction of the models.
+
+
+### The team: 
+
+![](team_1.png)
+
+top left to right: Vichy Meas, Juthi Dewan (me!)
+
+bottom left to right: Sam Ding, Freddy Barragan 
